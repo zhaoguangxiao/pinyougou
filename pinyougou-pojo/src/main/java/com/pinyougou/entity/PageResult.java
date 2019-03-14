@@ -13,27 +13,29 @@ import java.util.List;
  */
 public class PageResult implements Serializable{
 	private long total; 
-	private List date;
+	private List data;
 	
 	
 	
-	public PageResult(long total, List date) {
+	public PageResult(long total, List data) {
 		super();
 		this.total = total;
-		this.date = date;
+		this.data = data;
 	}
+
 	public long getTotal() {
 		return total;
 	}
+
 	public void setTotal(long total) {
 		this.total = total;
 	}
-	public List getDate() {
-		return date;
-	}
-	public void setDate(List date) {
-		this.date = date;
-	}
-	
 
+	public List getData() {
+		return data;
+	}
+
+	public void setData(List data) {
+		this.data = data;
+	}
 }

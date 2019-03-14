@@ -1,6 +1,7 @@
 package com.pinyougou.sellergoods.service.impl;
 import java.util.List;
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.pinyougou.entity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -87,16 +88,16 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 		Criteria criteria = example.createCriteria();
 		
 		if(typeTemplate!=null){			
-						if(typeTemplate.getName()!=null && typeTemplate.getName().length()>0){
+			if(StringUtils.isNotEmpty(typeTemplate.getName())){
 				criteria.andNameLike("%"+typeTemplate.getName()+"%");
 			}
-			if(typeTemplate.getSpecIds()!=null && typeTemplate.getSpecIds().length()>0){
+			if(StringUtils.isNotEmpty(typeTemplate.getSpecIds())){
 				criteria.andSpecIdsLike("%"+typeTemplate.getSpecIds()+"%");
 			}
-			if(typeTemplate.getBrandIds()!=null && typeTemplate.getBrandIds().length()>0){
+			if(StringUtils.isNotEmpty(typeTemplate.getBrandIds())){
 				criteria.andBrandIdsLike("%"+typeTemplate.getBrandIds()+"%");
 			}
-			if(typeTemplate.getCustomAttributeItems()!=null && typeTemplate.getCustomAttributeItems().length()>0){
+			if(StringUtils.isNotEmpty(typeTemplate.getCustomAttributeItems())){
 				criteria.andCustomAttributeItemsLike("%"+typeTemplate.getCustomAttributeItems()+"%");
 			}
 	

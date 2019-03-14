@@ -17,7 +17,7 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 		goodsService.findPage(page,rows).success(
 			function(response){
 				$scope.list=response.rows;	
-				$scope.paginationConf.totalItems=response.total;//更新总记录数
+				$scope.pageResultConf.totalItems=response.total;//更新总记录数
 			}			
 		);
 	}
@@ -71,8 +71,8 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 	$scope.search=function(page,rows){			
 		goodsService.search(page,rows,$scope.searchEntity).success(
 			function(response){
-				$scope.list=response.rows;	
-				$scope.paginationConf.totalItems=response.total;//更新总记录数
+				$scope.list=response.data;
+				$scope.pageResultConf.totalItems=response.total;//更新总记录数
 			}			
 		);
 	}

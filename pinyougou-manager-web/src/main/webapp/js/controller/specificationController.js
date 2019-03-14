@@ -72,7 +72,7 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	$scope.search=function(page,rows){			
 		specificationService.search(page,rows,$scope.searchEntity).success(
 			function(response){
-				$scope.list=response.date;	
+				$scope.list=response.data;
 				$scope.pageResultConf.totalItems=response.total;//更新总记录数
 			}			
 		);

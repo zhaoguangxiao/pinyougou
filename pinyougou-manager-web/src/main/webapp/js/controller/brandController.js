@@ -130,7 +130,7 @@
 		$scope.search=function(page,size){
 			brandService.search(page,size,$scope.searchEmtity).success(
 					function(response){
-						$scope.list = response.date;//显示当前页数据
+						$scope.list = response.data;//显示当前页数据
 						$scope.pageResultConf.totalItems = response.total;//显示总数据条数		
 					}
 			)

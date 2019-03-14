@@ -1,5 +1,6 @@
 package com.pinyougou.sellergoods.service.impl;
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -126,7 +127,7 @@ public class SpecificationServiceImpl implements SpecificationService {
         Criteria criteria = example.createCriteria();
 
         if (specification != null) {
-            if (specification.getSpecName() != null && specification.getSpecName().length() > 0) {
+            if (StringUtils.isNotEmpty(specification.getSpecName())) {
                 criteria.andSpecNameLike("%" + specification.getSpecName() + "%");
             }
 
