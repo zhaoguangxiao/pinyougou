@@ -3,6 +3,8 @@ package com.pinyougou.mapper;
 import com.pinyougou.pojo.TbSpecificationOption;
 import com.pinyougou.pojo.TbSpecificationOptionExample;
 import java.util.List;
+
+import com.pinyougou.pojogroup.Specification;
 import org.apache.ibatis.annotations.Param;
 
 public interface TbSpecificationOptionMapper {
@@ -27,4 +29,7 @@ public interface TbSpecificationOptionMapper {
     int updateByPrimaryKeySelective(TbSpecificationOption record);
 
     int updateByPrimaryKey(TbSpecificationOption record);
+
+    //通过规格id查找多个
+    List<TbSpecificationOption> selectAllSpecificationOptionBySpecId(@Param("uidpk") Long uidpk);
 }

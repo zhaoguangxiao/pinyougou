@@ -45,7 +45,7 @@
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default" ng-click="entity={specificationList:[]}" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="button" class="btn btn-default" title="删除" ng-click="delete()"><i class="fa fa-trash-o"></i> 删除</button>
                                         
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
@@ -71,12 +71,12 @@
 			                          </tr>
 			                      </thead>
 			                      <tbody>
-			                          <tr ng-repeat="each in list">
-			                              <td><input  type="checkbox" ></td>			                              
+			                          <tr ng-repeat="each in list" >
+			                              <td><input  type="checkbox" ng-click="changeSelectsEvent($event,each.id)"></td>
 				                          <td>{{each.id}}</td>
 									      <td>{{each.specName}}</td>
 		                                  <td class="text-center">                                           
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal">修改</button>                                           
+		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" ng-click="findOne(each.id)">修改</button>
 		                                  </td>
 			                          </tr>
 

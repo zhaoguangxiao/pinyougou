@@ -193,4 +193,11 @@
       orders = #{orders,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+
+  <select id="selectAllSpecificationOptionBySpecId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+   select id,option_name,spec_id,orders  FROM tb_specification_option
+    where spec_id = #{uidpk,jdbcType=BIGINT}
+  </select>
+
 </mapper>
