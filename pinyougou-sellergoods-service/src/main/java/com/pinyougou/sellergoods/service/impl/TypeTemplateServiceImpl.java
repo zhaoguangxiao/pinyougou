@@ -1,4 +1,5 @@
 package com.pinyougou.sellergoods.service.impl;
+import java.util.Arrays;
 import java.util.List;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
@@ -74,9 +75,9 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 	 */
 	@Override
 	public void delete(Long[] ids) {
-		for(Long id:ids){
-			typeTemplateMapper.deleteByPrimaryKey(id);
-		}		
+		Arrays.asList(ids).forEach(each->{
+			typeTemplateMapper.deleteByPrimaryKey(each);
+		});
 	}
 	
 	

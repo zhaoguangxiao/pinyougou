@@ -22,7 +22,7 @@ app.service('typeTemplateService',function($http){
 		return  $http.post('../typeTemplate/update.do',entity );
 	}
 	//删除
-	this.dele=function(ids){
+	this.delete=function(ids){
 		return $http.get('../typeTemplate/delete.do?ids='+ids);
 	}
 	//搜索

@@ -26,4 +26,8 @@
 		this.search=function(page,size,searchEmtity){
 			return $http.post('../brand/searchBrand.do?page=' + page + '&size=' + size,searchEmtity);
 		}
+		//品牌select2
+		this.select2Brand=function(){
+			return $http.get("../brand/findAllBrand.do");
+		}
 	});

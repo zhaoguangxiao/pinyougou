@@ -181,4 +181,10 @@
   <select id="countBranchNamInExist" parameterType="java.lang.String" resultType="int">
     select count(id) FROM  tb_brand WHERE  name = #{name,jdbcType=VARCHAR}
   </select>
+
+
+  <select id="selectAllBrand" resultType="map">
+    select id,name AS text from tb_brand
+  </select>
+
 </mapper>

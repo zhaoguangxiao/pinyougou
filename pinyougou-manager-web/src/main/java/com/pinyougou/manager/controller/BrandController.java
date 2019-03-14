@@ -1,6 +1,7 @@
 package com.pinyougou.manager.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import com.pinyougou.entity.Result;
 import com.pinyougou.entity.PageResult;
@@ -96,6 +97,11 @@ public class BrandController {
 	@RequestMapping("searchBrand")
 	public PageResult searchBrand(@RequestBody TbBrand branch,int page, int size){
 		return brandService.finPage(branch, page, size);
+	}
+
+	@RequestMapping("findAllBrand")
+	public List<Map> findAllBrand(){
+		return brandService.findAllBrand();
 	}
 
 
