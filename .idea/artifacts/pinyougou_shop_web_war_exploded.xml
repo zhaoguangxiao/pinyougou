@@ -37,6 +37,12 @@
           <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.28" />
           <element id="library" level="project" name="Maven: org.javassist:javassist:3.18.0-GA" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
+          <element id="archive" name="pinyougou-sellergoods-interface-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="pinyougou-sellergoods-interface" />
+          </element>
+          <element id="archive" name="pinyougou-pojo-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="pinyougou-pojo" />
+          </element>
         </element>
       </element>
       <element id="directory" name="META-INF">

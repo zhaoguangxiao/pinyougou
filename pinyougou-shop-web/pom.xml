@@ -83,6 +83,11 @@
             <artifactId>servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com-pinyougou</groupId>
+            <artifactId>pinyougou-sellergoods-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
 
     </dependencies>

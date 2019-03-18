@@ -61,5 +61,7 @@
     <orderEntry type="library" name="Maven: org.javassist:javassist:3.18.0-GA" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.10" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
+    <orderEntry type="module" module-name="pinyougou-sellergoods-interface" />
+    <orderEntry type="module" module-name="pinyougou-pojo" />
   </component>
 </module>
