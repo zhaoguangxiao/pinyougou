@@ -13,6 +13,20 @@ public class TbSeller implements Serializable{
      */
     public static  final String  SHOP_UNAUDITED="0";
 
+    /**
+     * 已审核
+     */
+    public static  final  String SHOP_AUDITED="1";
+
+    /**
+     * 审核未通过
+     */
+    public static  final  String SHOP_NOTPASS="2";
+
+    /**
+     * 关闭
+     */
+    public static  final  String SHOP_CLOSE="3";
 
 
     /**

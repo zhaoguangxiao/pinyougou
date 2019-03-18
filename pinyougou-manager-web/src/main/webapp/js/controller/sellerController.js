@@ -43,7 +43,7 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 			function(response){
 				if(response.success){
 					//重新查询 
-		        	$scope.reloadList();//重新加载
+		        	$scope.loadList();//重新加载
 				}else{
 					alert(response.message);
 				}
@@ -58,7 +58,7 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 		sellerService.dele( $scope.selectIds ).success(
 			function(response){
 				if(response.success){
-					$scope.reloadList();//刷新列表
+					$scope.loadList();//刷新列表
 					$scope.selectIds=[];
 				}						
 			}		
@@ -76,5 +76,19 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 			}			
 		);
 	}
+
+
+	//更新商家状态
+	$scope.updateSellerStatus=function (seller, status) {
+        sellerService.updateSellerStatus(seller,status).success(
+        	function (response) {
+				if (response.success){
+                    $scope.loadList();//刷新列表
+				}else{
+					alert(response.message);
+				}
+            }
+		);
+    }
     
 });	

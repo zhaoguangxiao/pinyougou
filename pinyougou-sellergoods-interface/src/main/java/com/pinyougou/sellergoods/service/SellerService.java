@@ -1,6 +1,7 @@
 package com.pinyougou.sellergoods.service;
 
 import com.pinyougou.entity.PageResult;
+import com.pinyougou.entity.Result;
 import com.pinyougou.pojo.TbSeller;
 
 import java.util.List;
@@ -58,5 +59,8 @@ public interface SellerService {
 	 * @return
 	 */
 	public PageResult findPage(TbSeller seller, int pageNum, int pageSize);
+
+
+	public void updateSellerStatus(String sellerId,String status);
 	
 }
