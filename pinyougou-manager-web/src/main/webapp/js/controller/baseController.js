@@ -19,6 +19,7 @@ app.controller('baseController', function ($scope) {
             $scope.pageResultConf.itemsPerPage);
     }
 
+
     //用于保存用户批量删除的id
     $scope.changeSelectsEvent = function ($event, id) {
         if ($event.target.checked) {
