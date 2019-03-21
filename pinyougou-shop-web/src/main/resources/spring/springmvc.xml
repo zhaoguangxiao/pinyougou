@@ -7,6 +7,8 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
     <context:property-placeholder location="classpath:config/application.properties" />
 	
 	<mvc:annotation-driven>
@@ -28,4 +30,11 @@
 	<dubbo:registry address="zookeeper://192.168.25.131:2181"/>
 	<dubbo:annotation package="com.pinyougou.shop.controller" />  	
 
+
+
+	<!--配置多媒体解析器-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize"><value>5242880</value></property>
+		<property name="defaultEncoding"><value>UTF-8</value></property>
+	</bean>
 </beans>

@@ -1,5 +1,5 @@
  //控制层 
-app.controller('goodsController' ,function($scope,$controller   ,goodsService){	
+app.controller('goodsController' ,function($scope,$controller,goodsService,uploadService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -73,5 +73,19 @@ app.controller('goodsController' ,function($scope,$controller   ,goodsService){
 			}			
 		);
 	}
+
+    $scope.entity_File={};
+	//上传文件
+	$scope.uploadFile=function () {
+        uploadService.uploadFileService().success(
+        	function (response) {
+				if (response.success){
+					$scope.entity_File.url=response.message;
+				}else{
+					alert(response.message);
+				}
+            }
+		)
+    }
     
 });	
