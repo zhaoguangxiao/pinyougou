@@ -88,4 +88,17 @@ app.controller('goodsController' ,function($scope,$controller,goodsService,uploa
 		)
     }
     
+
+    $scope.entity={tbGoodsDesc:{itemImages:[]}}
+
+    //add 图片集合
+	$scope.addFileEntity=function () {
+        $scope.entity.tbGoodsDesc.itemImages.push($scope.entity_File);
+    }
+
+    $scope.deleteFileEntity = function (index) {
+        //从数组移除这个id
+        $scope.entity.tbGoodsDesc.itemImages.splice(index, 1);
+    }
+    
 });	

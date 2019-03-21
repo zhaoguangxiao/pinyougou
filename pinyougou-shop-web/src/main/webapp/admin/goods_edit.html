@@ -153,14 +153,14 @@
 												<th class="sorting">操作</th>
 							            </thead>
 					                    <tbody>
-					                      <tr>					                           
+					                      <tr ng-repeat="each in entity.tbGoodsDesc.itemImages">
 									            <td>
-									            	
+									            	{{each.color}}
 									            </td>
 									            <td>
-									           		<img alt="" src="" width="100px" height="100px">	            	 
+									           		<img alt="" src="{{each.url}}" width="100px" height="100px">
 									            </td>
-												 <td> <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button></td> 
+												 <td> <button type="button" ng-click="deleteFileEntity($index)" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button></td>
 					                      </tr>
 					                    </tbody>
 								 </table> 
@@ -384,7 +384,7 @@
 					                </button>	
 					            </td>
 								<td>
-									<img  src="{{entity_File.url}}" width="200px" height="200px">
+									<img  alt="" src="{{entity_File.url}}" width="200px" height="200px">
 								</td>
 							</tr>						
 						</table>
@@ -394,7 +394,7 @@
 			
 		</div>
 		<div class="modal-footer">						
-			<button class="btn btn-success"  data-dismiss="modal" aria-hidden="true">保存</button>
+			<button class="btn btn-success"  data-dismiss="modal" aria-hidden="true" ng-click="addFileEntity()">保存</button>
 			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
 		</div>
 	  </div>
