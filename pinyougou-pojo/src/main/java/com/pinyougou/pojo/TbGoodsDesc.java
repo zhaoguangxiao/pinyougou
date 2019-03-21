@@ -2,19 +2,44 @@ package com.pinyougou.pojo;
 
 import java.io.Serializable;
 
+/** 商品拓展属性
+ * @author 晓电脑
+ */
 public class TbGoodsDesc implements Serializable{
+
+    /**
+     * spu id
+     */
     private Long goodsId;
 
+    /**
+     * 描述
+     */
     private String introduction;
 
+    /**
+     * 规格结果集
+     */
     private String specificationItems;
 
+    /**
+     * 自定义属性
+     */
     private String customAttributeItems;
 
+    /**
+     * 图片
+     */
     private String itemImages;
 
+    /**
+     * 包装列表
+     */
     private String packageList;
 
+    /**
+     * 售后服务
+     */
     private String saleService;
 
     public Long getGoodsId() {
