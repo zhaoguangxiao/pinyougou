@@ -407,8 +407,9 @@
 	var editor;
 	KindEditor.ready(function(K) {
 		editor = K.create('textarea[name="content"]', {
-			allowFileManager : true
-		});
+			allowFileManager : true,
+            resizeType : 2
+        });
 	});
 
 </script>
