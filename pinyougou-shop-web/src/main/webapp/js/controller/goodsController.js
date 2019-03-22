@@ -89,7 +89,7 @@ app.controller('goodsController', function ($scope, $controller, goodsService, u
     }
 
 
-    $scope.entity = {tbGoodsDesc: {itemImages: []}}
+    $scope.entity = {tbGoodsDesc: {itemImages: [], specificationItems: []}}
 
     //add 图片集合
     $scope.addFileEntity = function () {
@@ -157,4 +157,24 @@ app.controller('goodsController', function ($scope, $controller, goodsService, u
             }
         );
     })
+
+    $scope.updateSpecList = function ($event, name, val) {
+        var object = $scope.seachObjectByKey($scope.entity.tbGoodsDesc.specificationItems, 'attributeName', name);
+        if (object != null) {
+            if ($event.target.checked) {
+                //如果勾选复选框
+                object.attributeValue.push(val);
+            } else {//取消复选框
+                object.attributeValue.splice(object.attributeValue.indexOf(val), 1);
+                //判断attributeValue 是否为空如果为空则删除这个对象
+                if (object.attributeValue.length == 0) {
+                    $scope.entity.tbGoodsDesc.specificationItems.splice(
+                        $scope.entity.tbGoodsDesc.specificationItems.indexOf(object), 1
+                    );
+                }
+            }
+        } else {
+            $scope.entity.tbGoodsDesc.specificationItems.push({"attributeName": name, "attributeValue": [val]});
+        }
+    }
 });	

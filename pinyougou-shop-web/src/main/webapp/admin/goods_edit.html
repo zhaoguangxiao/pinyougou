@@ -201,12 +201,11 @@
 			                                <div class="col-md-2 title">{{each.text}}</div>
 					                        <div class="col-md-10 data">
 					                            <span ng-repeat="opeion in each.options">
-					                            	<input  type="checkbox" >{{opeion.optionName}}
+					                            	<input  type="checkbox" ng-click="updateSpecList($event,each.text,opeion.optionName)" >{{opeion.optionName}}
 					                            </span>
 					                        </div>
 		                                </div>
 	                                </div>
-	
 	                                
 	                                <div class="row data-type">
 	                                	 <table class="table table-bordered table-striped table-hover dataTable">
