@@ -29,13 +29,14 @@
 	<script src="../js/controller/baseController.js"></script>
 	<script src="../js/controller/goodsController.js"></script>
 	<script src="../js/service/uploadService.js"></script>
+	<script src="../js/service/itemCatService.js"></script>
 	<script src="../js/service/goodsService.js"></script>
 
 
 
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="goodsController">
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="goodsController" ng-init="findItemCat1List()">
 
             <!-- 正文区域 -->
             <section class="content">
@@ -74,17 +75,17 @@
 		                           	  	<table>
 		                           	  		<tr>
 		                           	  			<td>
-		                           	  				<select class="form-control" >														
+		                           	  				<select class="form-control" ng-model="entity.tbGoods.category1Id" ng-options=" each.id as each.name for each in Item1List">
 		                           	  				</select>
 		                              			</td>
 		                              			<td>
-		                           	  				<select class="form-control select-sm" ></select>
+		                           	  				<select class="form-control select-sm" ng-model="entity.tbGoods.category2Id" ng-options=" each.id as each.name for each in Item2List" ></select>
 		                              			</td>
 		                              			<td>
-		                           	  				<select class="form-control select-sm" ></select>
+		                           	  				<select class="form-control select-sm" ng-model="entity.tbGoods.category3Id" ng-options=" each.id as each.name for each in Item3List"></select>
 		                              			</td>
 		                              			<td>
-		                           	  				模板ID:19
+		                           	  				模板ID:{{entity.tbGoods.typeTemplateId}}
 		                              			</td>
 		                           	  		</tr>
 		                           	  	</table>

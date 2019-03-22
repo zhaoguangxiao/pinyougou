@@ -1,5 +1,5 @@
  //控制层 
-app.controller('goodsController' ,function($scope,$controller,goodsService,uploadService){
+app.controller('goodsController' ,function($scope,$controller,goodsService,uploadService,itemCatService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -100,5 +100,43 @@ app.controller('goodsController' ,function($scope,$controller,goodsService,uploa
         //从数组移除这个id
         $scope.entity.tbGoodsDesc.itemImages.splice(index, 1);
     }
-    
+
+
+
+    $scope.findItemCat1List=function () {
+		itemCatService.findSonByParentId(0).success(
+			function (response) {
+				$scope.Item1List=response;
+            }
+		)
+    }
+
+    $scope.$watch('entity.tbGoods.category1Id',function (newValue, oldValue) {
+        itemCatService.findSonByParentId(newValue).success(
+            function (response) {
+                $scope.Item2List=response;
+                $scope.Item3List=null;
+                $scope.entity.tbGoods.typeTemplateId=null;
+            }
+		)
+    })
+
+
+    $scope.$watch('entity.tbGoods.category2Id',function (newValue, oldValue) {
+        itemCatService.findSonByParentId(newValue).success(
+            function (response) {
+                $scope.Item3List=response;
+            }
+        )
+    })
+
+
+
+    $scope.$watch('entity.tbGoods.category3Id',function (newValue, oldValue) {
+        itemCatService.findOne(newValue).success(
+        	function (response) {
+                $scope.entity.tbGoods.typeTemplateId=response.typeId;
+            }
+		)
+    })
 });	
