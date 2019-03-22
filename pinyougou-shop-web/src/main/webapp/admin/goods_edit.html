@@ -30,6 +30,7 @@
 	<script src="../js/controller/goodsController.js"></script>
 	<script src="../js/service/uploadService.js"></script>
 	<script src="../js/service/itemCatService.js"></script>
+	<script src="../js/service/typeTemplateService.js"></script>
 	<script src="../js/service/goodsService.js"></script>
 
 
@@ -100,7 +101,7 @@
 		                           
 		                           <div class="col-md-2 title">品牌</div>
 		                           <div class="col-md-10 data">
-		                              <select class="form-control" ></select>
+		                              <select class="form-control" ng-model="entity.tbGoods.brandId" ng-options="each.id as each.text for each in typeTemplate.brandIds"></select>
 		                           </div>
 		
 								   <div class="col-md-2 title">副标题</div>
@@ -172,19 +173,13 @@
                            
                             <!--扩展属性-->
                             <div class="tab-pane" id="customAttribute">
-                                <div class="row data-type">                                
-	                                <div>
-		                                <div class="col-md-2 title">扩展属性1</div>
+                                <div class="row data-type">
+	                                <div ng-repeat=" each in entity.tbGoodsDesc.customAttributeItems">
+		                                <div class="col-md-2 title">{{each.text}}</div>
 				                        <div class="col-md-10 data">
-				                              <input class="form-control" placeholder="扩展属性1">	            	 
+				                              <input class="form-control" ng-model="each.value" placeholder="{{each.text}}">
 				                        </div>
-	                                </div>       
-									<div>
-		                                <div class="col-md-2 title">扩展属性2</div>
-				                        <div class="col-md-10 data">
-				                              <input class="form-control" placeholder="扩展属性2">	            	 
-				                        </div>
-	                                </div>  									
+	                                </div>
                                 </div>
                             </div>
                       
