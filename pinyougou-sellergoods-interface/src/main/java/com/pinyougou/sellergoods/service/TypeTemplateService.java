@@ -4,6 +4,8 @@ import com.pinyougou.entity.PageResult;
 import com.pinyougou.pojo.TbTypeTemplate;
 
 import java.util.List;
+import java.util.Map;
+
 /**
  * 服务层接口
  * @author Administrator
@@ -58,5 +60,8 @@ public interface TypeTemplateService {
 	 * @return
 	 */
 	public PageResult findPage(TbTypeTemplate typeTemplate, int pageNum, int pageSize);
+
+
+	public List<Map> findSpecByTypeTemplateId(long typeTemplateId);
 	
 }
