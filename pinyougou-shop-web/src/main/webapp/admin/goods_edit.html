@@ -188,12 +188,12 @@
                             	<div class="row data-type">
 	                            	<div class="col-md-2 title">是否启用规格</div>
 			                        <div class="col-md-10 data">
-			                        	<input type="checkbox" >			                           
+			                        	<input type="checkbox" ng-model="entity.tbGoods.isEnableSpec" ng-true-value="1" ng-false-value="0">
 			                        </div>
                             	</div>
                             	<p>
                             	
-                            	<div>
+                            	<div ng-if="entity.tbGoods.isEnableSpec == '1'">
                             	
 	                                <div class="row data-type">
 	                                
