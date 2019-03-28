@@ -16,7 +16,7 @@ app.controller('goodsController', function ($scope, $controller, goodsService, u
     $scope.findPage = function (page, rows) {
         goodsService.findPage(page, rows).success(
             function (response) {
-                $scope.list = response.rows;
+                $scope.list = response.data;
                 $scope.pageResultConf.totalItems = response.total;//更新总记录数
             }
         );
@@ -72,6 +72,20 @@ app.controller('goodsController', function ($scope, $controller, goodsService, u
                 $scope.pageResultConf.totalItems = response.total;//更新总记录数
             }
         );
+    };
+
+    $scope.status=['未审核','审核通过','审核未通过','已关闭'];
+
+    $scope.findAllCategory=[];
+
+    $scope.findCategoryList=function () {
+        itemCatService.findAll().success(
+            function (response) {
+                for (var i=0;i<response.length;i++){
+                    $scope.findAllCategory[response[i].id]=response[i].name;
+                }
+            }
+        )
     }
 
     $scope.entity_File = {};

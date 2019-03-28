@@ -14,10 +14,26 @@
     <link rel="stylesheet" href="../css/style.css">
 	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
- 
+
+
+	<script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+
+	<!-- 引用分页插件-->
+	<script src="../plugins/angularjs/pagination.js"></script>
+	<link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+
+	<script src="../js/base_page.js"></script>
+	<script src="../js/controller/baseController.js"></script>
+	<script src="../js/controller/goodsController.js"></script>
+	<script src="../js/service/uploadService.js"></script>
+	<script src="../js/service/itemCatService.js"></script>
+	<script src="../js/service/typeTemplateService.js"></script>
+	<script src="../js/service/goodsService.js"></script>
+
+
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" >
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="goodsController" ng-init="findCategoryList()">
   <!-- .box-body -->
                 
                     <div class="box-header with-border">
@@ -43,15 +59,15 @@
                             </div>
                             <div class="box-tools pull-right">
                                 <div class="has-feedback">
-                                  状态：<select>
+                                  状态：<select ng-model="searchEntity.auditStatus">
                                          	<option value="">全部</option>      
-                                         	<option value="0">未申请</option>    
-                                         	<option value="1">申请中</option>    
-                                         	<option value="2">审核通过</option>    
-                                         	<option value="3">已驳回</option>                                     
+                                         	<option value="0">未审核</option>
+                                         	<option value="1">审核通过</option>
+                                         	<option value="2">审核未通过</option>
+                                         	<option value="3">关闭</option>
                                         </select>
-							                  商品名称：<input >									
-									<button class="btn btn-default" >查询</button>                                    
+							                  商品名称：<input ng-model="searchEntity.goodsName">
+									<button class="btn btn-default" ng-click="loadList()" >查询</button>
                                 </div>
                             </div>
                             <!--工具栏/-->
@@ -74,36 +90,23 @@
 			                          </tr>
 			                      </thead>
 			                      <tbody>
-			                          <tr>
+			                          <tr ng-repeat="each in list">
 			                              <td><input  type="checkbox"></td>			                              
-				                          <td>1</td>
-									      <td>小米6S手机</td>
-									      <td>1090</td>
-									      <td>数码</td>
-									      <td>手机</td>
-									      <td>国产手机</td>
-		                                  <td>
-		                                  	<span>
-		                                  		未申请
-		                                  	</span>
-		                                  	<span >
-		                                  		申请中
-		                                  	</span>
-		                                  	<span>
-		                                  		审核通过
-		                                  	</span>
-		                                  	<span>
-		                                  		已驳回
-		                                  	</span>
-		                                  </td>		                                  
+				                          <td>{{each.id}}</td>
+									      <td>{{each.goodsName}}</td>
+									      <td>{{each.price}}</td>
+									      <td>{{findAllCategory[each.category1Id]}}</td>
+									      <td>{{findAllCategory[each.category2Id]}}</td>
+									      <td>{{findAllCategory[each.category3Id]}}</td>
+		                                  <td>{{status[each.auditStatus]}}</td>
 		                                  <td class="text-center">                                          
 		                                 	  <button type="button" class="btn bg-olive btn-xs">修改</button>                  
 		                                  </td>
 			                          </tr>
 			                      </tbody>
 			                  </table>
-			                  <!--数据列表/-->                        
-							  
+			                  <!--数据列表/-->
+							<tm-pagination conf="pageResultConf"></tm-pagination>
 							 
                         </div>
                         <!-- 数据表格 /-->
