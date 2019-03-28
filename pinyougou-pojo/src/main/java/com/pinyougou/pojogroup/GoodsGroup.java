@@ -2,6 +2,7 @@ package com.pinyougou.pojogroup;
 
 import com.pinyougou.pojo.TbGoods;
 import com.pinyougou.pojo.TbGoodsDesc;
+import com.pinyougou.pojo.TbItem;
 import com.pinyougou.pojo.TbItemCat;
 
 import java.io.Serializable;
@@ -33,7 +34,7 @@ public class GoodsGroup implements Serializable{
     /**
      * sku 商品属性
      */
-    private List<TbItemCat> itemCatList;
+    private List<TbItem> itemCatList;
 
     public TbGoods getTbGoods() {
         return tbGoods;
@@ -51,11 +52,11 @@ public class GoodsGroup implements Serializable{
         this.tbGoodsDesc = tbGoodsDesc;
     }
 
-    public List<TbItemCat> getItemCatList() {
+    public List<TbItem> getItemCatList() {
         return itemCatList;
     }
 
-    public void setItemCatList(List<TbItemCat> itemCatList) {
+    public void setItemCatList(List<TbItem> itemCatList) {
         this.itemCatList = itemCatList;
     }
 }

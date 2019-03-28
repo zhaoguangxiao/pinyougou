@@ -55,7 +55,7 @@ app.controller('goodsController', function ($scope, $controller, goodsService, u
         goodsService.dele($scope.selectIds).success(
             function (response) {
                 if (response.success) {
-                    $scope.reloadList();//刷新列表
+                    $scope.loadList();//刷新列表
                     $scope.selectIds = [];
                 }
             }
@@ -176,5 +176,27 @@ app.controller('goodsController', function ($scope, $controller, goodsService, u
         } else {
             $scope.entity.tbGoodsDesc.specificationItems.push({"attributeName": name, "attributeValue": [val]});
         }
+    }
+
+    //创建SKU列表
+    $scope.createItemsList = function () {
+        $scope.entity.itemCatList = [{spec: {}, price: 0, num: 0, status: '0', isDefault: '0'}];
+        var items = $scope.entity.tbGoodsDesc.specificationItems;
+        for (var i = 0; i < items.length; i++) {
+            $scope.entity.itemCatList = addItemList($scope.entity.itemCatList, items[i].attributeName, items[i].attributeValue);
+        }
+    }
+
+    addItemList = function (list, columnName, columnVal) {
+        var newList = [];
+        for (var i = 0; i < list.length; i++) {
+            var oldEach = list[i];
+            for (var j = 0; j < columnVal.length; j++) {
+                var newEach = JSON.parse(JSON.stringify(oldEach));
+                newEach.spec[columnName] = columnVal[j];
+                newList.push(newEach)
+            }
+        }
+        return newList;
     }
 });	
