@@ -10,6 +10,7 @@ import com.pinyougou.pojo.TbGoods;
 import com.pinyougou.pojo.TbGoodsExample;
 import com.pinyougou.pojo.TbGoodsExample.Criteria;
 import com.pinyougou.pojo.TbItem;
+import com.pinyougou.pojo.TbItemExample;
 import com.pinyougou.pojogroup.GoodsGroup;
 import com.pinyougou.sellergoods.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,10 @@ public class GoodsServiceImpl implements GoodsService {
         goods.getTbGoodsDesc().setGoodsId(goods.getTbGoods().getId());
         tbGoodsDescMapper.insert(goods.getTbGoodsDesc());
 
+        saveItemList(goods);
+    }
+
+    private void saveItemList(GoodsGroup goods){
         if (isNotEmpty(goods.getItemCatList()) && "1".equals(goods.getTbGoods().getIsEnableSpec())) {
             goods.getItemCatList().stream().forEach(each -> {
                         //保存商品标题
@@ -111,6 +116,8 @@ public class GoodsServiceImpl implements GoodsService {
             tbItemMapper.insert(item);
         }
     }
+
+
 
     private void setTbItemValue(TbItem item, GoodsGroup goods) {
         //设置三级类别id
@@ -147,8 +154,20 @@ public class GoodsServiceImpl implements GoodsService {
      * 修改
      */
     @Override
-    public void update(TbGoods goods) {
-        goodsMapper.updateByPrimaryKey(goods);
+    public void update(GoodsGroup goods) {
+        //更新商品基本表数据
+        goodsMapper.updateByPrimaryKey(goods.getTbGoods());
+        //更新商品拓展表数据
+        tbGoodsDescMapper.updateByPrimaryKey(goods.getTbGoodsDesc());
+        //更新sku列表数据
+        //1,首先删除原有的sku数据
+        TbItemExample example = new TbItemExample();
+        example.createCriteria().andGoodsIdEqualTo(goods.getTbGoods().getId());
+        tbItemMapper.deleteByExample(example);
+
+        //2,新增sku列表数据
+        saveItemList(goods);
+
     }
 
     /**
@@ -158,8 +177,19 @@ public class GoodsServiceImpl implements GoodsService {
      * @return
      */
     @Override
-    public TbGoods findOne(Long id) {
-        return goodsMapper.selectByPrimaryKey(id);
+    public GoodsGroup findOne(Long id) {
+        //创建扩展实体类
+        GoodsGroup goodsGroup = new GoodsGroup();
+        //查询商品表
+        goodsGroup.setTbGoods(goodsMapper.selectByPrimaryKey(id));
+        //查询商品拓展表
+        goodsGroup.setTbGoodsDesc(tbGoodsDescMapper.selectByPrimaryKey(id));
+        //查询商品的sku
+        TbItemExample example = new TbItemExample();
+        example.createCriteria().andGoodsIdEqualTo(id);
+        List<TbItem> tbItems = tbItemMapper.selectByExample(example);
+        goodsGroup.setItemCatList(tbItems);
+        return goodsGroup;
     }
 
     /**

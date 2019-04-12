@@ -1,5 +1,6 @@
 package com.pinyougou.shop.controller;
 import java.util.List;
+import java.util.Objects;
 
 import com.pinyougou.entity.PageResult;
 import com.pinyougou.entity.Result;
@@ -69,7 +70,17 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/update")
-	public Result update(@RequestBody TbGoods goods){
+	public Result update(@RequestBody GoodsGroup goods){
+
+		//设置登录人id
+		String name = SecurityContextHolder.getContext().getAuthentication().getName();
+		//判断该商品是否属于该商家
+		GoodsGroup goodsGroup = goodsService.findOne(goods.getTbGoods().getId());
+		if (!Objects.equals(goodsGroup.getTbGoods().getSellerId(),name)
+				|| !Objects.equals(goods.getTbGoods().getSellerId(),name)){
+			return new Result(false, "非法操作");
+		}
+
 		try {
 			goodsService.update(goods);
 			return new Result(true, "修改成功");
@@ -85,7 +96,7 @@ public class GoodsController {
 	 * @return
 	 */
 	@RequestMapping("/findOne")
-	public TbGoods findOne(Long id){
+	public GoodsGroup findOne(Long id){
 		return goodsService.findOne(id);		
 	}
 	

@@ -1,5 +1,5 @@
 //控制层
-app.controller('goodsController', function ($scope, $controller, goodsService, uploadService, itemCatService, typeTemplateService) {
+app.controller('goodsController', function ($scope, $controller, $location, goodsService, uploadService, itemCatService, typeTemplateService) {
 
     $controller('baseController', {$scope: $scope});//继承
 
@@ -23,18 +23,43 @@ app.controller('goodsController', function ($scope, $controller, goodsService, u
     }
 
     //查询实体
-    $scope.findOne = function (id) {
-        goodsService.findOne(id).success(
-            function (response) {
-                $scope.entity = response;
-            }
-        );
+    $scope.findOne = function () {
+        var id = $location.search()['id'];
+
+        if (null == id) {
+            return;
+        } else {
+            goodsService.findOne(id).success(
+                function (response) {
+                    $scope.entity = response;
+                    editor.html($scope.entity.tbGoodsDesc.introduction);//商品描述
+                    //商品图片
+                    $scope.entity.tbGoodsDesc.itemImages = JSON.parse($scope.entity.tbGoodsDesc.itemImages);
+                    //商品拓展属性
+                    $scope.entity.tbGoodsDesc.customAttributeItems = JSON.parse($scope.entity.tbGoodsDesc.customAttributeItems);
+                    //商品规格
+                    $scope.entity.tbGoodsDesc.specificationItems = JSON.parse($scope.entity.tbGoodsDesc.specificationItems);
+                    //商品SKU列表
+                    for(var i=0;i<$scope.entity.itemCatList.length;i++){
+                        $scope.entity.itemCatList[i].spec=JSON.parse($scope.entity.itemCatList[i].spec);
+                    }
+                }
+            );
+        }
     }
 
     //保存
-    $scope.add = function () {
+    $scope.save = function () {
         $scope.entity.tbGoodsDesc.introduction = editor.html();
-        goodsService.add($scope.entity).success(
+
+        var serviceObject;
+        if (null !=$scope.entity.tbGoods){
+            serviceObject=goodsService.update($scope.entity);
+        }else{
+            serviceObject=goodsService.add($scope.entity);
+        }
+
+        serviceObject.success(
             function (response) {
                 if (response.success) {
                     alert(response.message);
@@ -74,15 +99,15 @@ app.controller('goodsController', function ($scope, $controller, goodsService, u
         );
     };
 
-    $scope.status=['未审核','审核通过','审核未通过','已关闭'];
+    $scope.status = ['未审核', '审核通过', '审核未通过', '已关闭'];
 
-    $scope.findAllCategory=[];
+    $scope.findAllCategory = [];
 
-    $scope.findCategoryList=function () {
+    $scope.findCategoryList = function () {
         itemCatService.findAll().success(
             function (response) {
-                for (var i=0;i<response.length;i++){
-                    $scope.findAllCategory[response[i].id]=response[i].name;
+                for (var i = 0; i < response.length; i++) {
+                    $scope.findAllCategory[response[i].id] = response[i].name;
                 }
             }
         )
@@ -162,7 +187,9 @@ app.controller('goodsController', function ($scope, $controller, goodsService, u
                 $scope.typeTemplate.brandIds = JSON.parse($scope.typeTemplate.brandIds);
 
                 //商品扩展属性
-                $scope.entity.tbGoodsDesc.customAttributeItems = JSON.parse(response.customAttributeItems);
+                if (null == $location.search()['id']) {
+                    $scope.entity.tbGoodsDesc.customAttributeItems = JSON.parse(response.customAttributeItems);
+                }
             }
         )
         typeTemplateService.findSpecList(newValue).success(
@@ -212,5 +239,20 @@ app.controller('goodsController', function ($scope, $controller, goodsService, u
             }
         }
         return newList;
+    }
+
+    //修改 查询规格列表是否默认选中
+    $scope.checkedAttributeValue = function (specName, optionName) {
+        var items = $scope.entity.tbGoodsDesc.specificationItems;
+        var hasAttribute=$scope.seachObjectByKey(items,'attributeName',specName);
+        if (null != hasAttribute){
+            if (hasAttribute.attributeValue.indexOf(optionName)>=0){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 });	

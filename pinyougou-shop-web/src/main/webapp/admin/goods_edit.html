@@ -37,7 +37,7 @@
 
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="goodsController" ng-init="findItemCat1List()">
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="goodsController" ng-init="findItemCat1List();findOne()">
 
             <!-- 正文区域 -->
             <section class="content">
@@ -201,7 +201,7 @@
 			                                <div class="col-md-2 title">{{each.text}}</div>
 					                        <div class="col-md-10 data">
 					                            <span ng-repeat="opeion in each.options">
-					                            	<input  type="checkbox" ng-click="updateSpecList($event,each.text,opeion.optionName);createItemsList()" >{{opeion.optionName}}
+					                            	<input  type="checkbox" ng-checked="checkedAttributeValue(each.text,opeion.optionName)"  ng-click="updateSpecList($event,each.text,opeion.optionName);createItemsList()" >{{opeion.optionName}}
 					                            </span>
 					                        </div>
 		                                </div>
@@ -255,8 +255,8 @@
                  	
                    </div>
                   <div class="btn-toolbar list-toolbar">
-				      <button class="btn btn-primary" ng-click="add()"><i class="fa fa-save"></i>保存</button>
-				      <button class="btn btn-default" >返回列表</button>
+				      <button class="btn btn-primary" ng-click="save()"><i class="fa fa-save"></i>保存</button>
+				      <a href="goods.html" class="btn btn-default" >返回列表</a>
 				  </div>
 			
             </section>
