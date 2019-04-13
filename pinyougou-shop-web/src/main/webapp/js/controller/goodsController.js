@@ -111,7 +111,7 @@ app.controller('goodsController', function ($scope, $controller, $location, good
                 }
             }
         )
-    }
+    };
 
     $scope.entity_File = {};
     //上传文件
@@ -255,4 +255,18 @@ app.controller('goodsController', function ($scope, $controller, $location, good
             return false;
         }
     }
+
+
+
+    $scope.findAllCategory = [];
+
+    $scope.findCategoryList = function () {
+        itemCatService.findAll().success(
+            function (response) {
+                for (var i = 0; i < response.length; i++) {
+                    $scope.findAllCategory[response[i].id] = response[i].name;
+                }
+            }
+        )
+    };
 });	

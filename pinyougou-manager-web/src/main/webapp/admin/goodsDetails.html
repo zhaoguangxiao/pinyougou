@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>商品详情</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    <script src="../js/base.js"></script>
+    <script src="../js/controller/baseController.js"></script>
+    <script src="../js/controller/goodsDetailsController.js"></script>
+    <script src="../js/service/goodsService.js"></script>
+    <script src="../js/service/itemCatService.js"></script>
+
+
+</head>
+<body ng-app="pinyougou" ng-controller="goodsDetailsController" ng-init="findOne();findCategoryList();">
+<table>
+    <tr>
+        <td>状态</td>
+        <td>{{status[list.tbGoods.auditStatus]}}</td>
+    </tr>
+    <tr>
+        <td>品牌</td>
+        <td>{{list.tbGoods.brandId}}</td>
+    </tr>
+    <tr>
+        <td>副标题</td>
+        <td>{{list.tbGoods.caption}}</td>
+    </tr>
+
+    <tr>
+        <td>一级类目</td>
+        <td>
+            {{findAllCategory[list.tbGoods.category1Id]}}
+        </td>
+    </tr>
+
+    <tr>
+        <td>二级类目</td>
+        <td>
+            {{findAllCategory[list.tbGoods.category2Id]}}
+        </td>
+    </tr>
+    <tr>
+        <td>三级类目</td>
+        <td>{{findAllCategory[list.tbGoods.category3Id]}}</td>
+    </tr>
+
+    <tr>
+        <td>默认sku</td>
+        <td>{{list.tbGoods.defaultItemId}}</td>
+    </tr>
+
+    <tr>
+        <td>spu 名</td>
+        <td>{{list.tbGoods.goodsName}}</td>
+    </tr>
+
+    <tr>
+        <td>是否删除</td>
+        <td>{{list.tbGoods.isDelete}}</td>
+    </tr>
+
+    <tr>
+        <td>是否启用规格</td>
+        <td>{{list.tbGoods.isEnableSpec}}</td>
+    </tr>
+
+    <tr>
+        <td>是否上架</td>
+        <td>{{list.tbGoods.isMarketable}}</td>
+    </tr>
+
+
+
+    <tr>
+        <td>价格</td>
+        <td>{{list.tbGoods.price}}</td>
+    </tr>
+
+
+    <tr>
+        <td>商家</td>
+        <td>{{list.tbGoods.sellerId}}</td>
+    </tr>
+
+
+    <tr>
+        <td>分类模板id</td>
+        <td>{{list.tbGoods.typeTemplateId}}</td>
+    </tr>
+
+    <tr>
+        <td>skuId</td>
+        <td>{{list.tbGoodsDesc.goodsId}}</td>
+    </tr>
+
+    <tr>
+        <td>售后服务</td>
+        <td>{{list.tbGoodsDesc.saleService}}</td>
+    </tr>
+
+    <tr>
+        <td>包装列表</td>
+        <td>{{list.tbGoodsDesc.packageList}}</td>
+    </tr>
+    <tr>
+        <td>商品图片</td>
+         <tr ng-repeat="each in list.tbGoodsDesc.itemImages">
+        <td>
+            {{each.color}}
+        </td>
+        <td>
+            <img alt="" src="{{each.url}}" width="100px" height="100px">
+        </td>
+    </tr>
+    </tr>
+
+    <tr>
+        <td>自定义属性</td>
+        <td>
+            <div class="tab-pane" id="customAttribute">
+                <div class="row data-type">
+                    <div ng-repeat=" entity in list.tbGoodsDesc.customAttributeItems">
+                        <div class="col-md-2 title">{{entity.text}}</div>
+                        <div class="col-md-10 data">
+                            <input class="form-control" ng-model="entity.value" placeholder="{{entity.text}}" disabled="true">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+
+
+
+</table>
+</body>
+</html>
