@@ -19,6 +19,7 @@ import com.pinyougou.pojo.TbTypeTemplate;
 import com.pinyougou.pojo.TbTypeTemplateExample;
 import com.pinyougou.pojo.TbTypeTemplateExample.Criteria;
 import com.pinyougou.sellergoods.service.TypeTemplateService;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 服务实现层
@@ -26,6 +27,7 @@ import com.pinyougou.sellergoods.service.TypeTemplateService;
  *
  */
 @Service
+@Transactional
 public class TypeTemplateServiceImpl implements TypeTemplateService {
 
 	@Autowired

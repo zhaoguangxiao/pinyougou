@@ -11,6 +11,7 @@ import com.pinyougou.pojo.TbSpecificationOptionExample;
 import com.pinyougou.pojo.TbSpecificationOptionExample.Criteria;
 import com.pinyougou.sellergoods.service.SpecificationOptionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ import java.util.List;
  * @author Administrator
  */
 @Service
+@Transactional
 public class SpecificationOptionServiceImpl implements SpecificationOptionService {
 
     @Autowired

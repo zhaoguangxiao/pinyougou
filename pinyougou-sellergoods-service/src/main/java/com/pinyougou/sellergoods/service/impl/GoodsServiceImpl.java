@@ -14,6 +14,7 @@ import com.pinyougou.pojo.TbItemExample;
 import com.pinyougou.pojogroup.GoodsGroup;
 import com.pinyougou.sellergoods.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -30,6 +31,7 @@ import static com.pinyougou.pojogroup.GoodsGroup.GOODS_UNAUDITED;
  * @author Administrator
  */
 @Service
+@Transactional
 public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
@@ -82,7 +84,6 @@ public class GoodsServiceImpl implements GoodsService {
         goods.getTbGoods().setIsDelete("1");
 
         goodsMapper.insert(goods.getTbGoods());
-
 
 
         goods.getTbGoodsDesc().setGoodsId(goods.getTbGoods().getId());
