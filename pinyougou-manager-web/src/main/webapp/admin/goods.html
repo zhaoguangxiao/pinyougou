@@ -32,7 +32,7 @@
 
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="goodsController" ng-init="findCategoryList();searchEntity={auditStatus:'0'}">
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="goodsController" ng-init="findCategoryList();searchEntity={auditStatus:'1'}">
   <!-- .box-body -->
                     <div class="box-header with-border">
                         <h3 class="box-title">商品审核</h3>
@@ -47,9 +47,9 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
-                                        <button type="button" class="btn btn-default" title="审核通过" ><i class="fa fa-check"></i> 审核通过</button>
-                                        <button type="button" class="btn btn-default" title="驳回" ><i class="fa fa-ban"></i> 驳回</button>                                  
+                                        <button type="button" class="btn btn-default" title="删除" ng-click="delete()"><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="button" class="btn btn-default" title="审核通过" ng-click="updateGoodsStatus('2')"><i class="fa fa-check"></i> 审核通过</button>
+                                        <button type="button" class="btn btn-default" title="驳回" ng-click="updateGoodsStatus('3')"><i class="fa fa-ban"></i> 驳回</button>
                                         <button type="button" class="btn btn-default" title="刷新" ><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
                                 </div>
@@ -81,7 +81,7 @@
 			                      </thead>
 			                      <tbody>
 								  <tr ng-repeat="each in list">
-									  <td><input  type="checkbox"></td>
+									  <td><input  type="checkbox" ng-click="changeSelectsEvent($event,each.id)"></td>
 									  <td>{{each.id}}</td>
 									  <td>{{each.goodsName}}</td>
 									  <td>{{each.price}}</td>

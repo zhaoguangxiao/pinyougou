@@ -43,7 +43,7 @@ app.controller('itemController' ,function($scope,$controller   ,itemService){
 			function(response){
 				if(response.success){
 					//重新查询 
-		        	$scope.reloadList();//重新加载
+		        	$scope.loadList();//重新加载
 				}else{
 					alert(response.message);
 				}
@@ -58,7 +58,7 @@ app.controller('itemController' ,function($scope,$controller   ,itemService){
 		itemService.dele( $scope.selectIds ).success(
 			function(response){
 				if(response.success){
-					$scope.reloadList();//刷新列表
+					$scope.loadList();//刷新列表
 					$scope.selectIds=[];
 				}						
 			}		

@@ -15,6 +15,8 @@ import com.pinyougou.pojogroup.GoodsGroup;
 import com.pinyougou.sellergoods.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -74,7 +76,14 @@ public class GoodsServiceImpl implements GoodsService {
 
         //设置商品状态
         goods.getTbGoods().setAuditStatus(GOODS_UNAUDITED);
+        //设置是否上架
+        goods.getTbGoods().setIsMarketable("1");
+        //设置是否删除
+        goods.getTbGoods().setIsDelete("1");
+
         goodsMapper.insert(goods.getTbGoods());
+
+
 
         goods.getTbGoodsDesc().setGoodsId(goods.getTbGoods().getId());
         tbGoodsDescMapper.insert(goods.getTbGoodsDesc());
@@ -82,7 +91,7 @@ public class GoodsServiceImpl implements GoodsService {
         saveItemList(goods);
     }
 
-    private void saveItemList(GoodsGroup goods){
+    private void saveItemList(GoodsGroup goods) {
         if (isNotEmpty(goods.getItemCatList()) && "1".equals(goods.getTbGoods().getIsEnableSpec())) {
             goods.getItemCatList().stream().forEach(each -> {
                         //保存商品标题
@@ -116,7 +125,6 @@ public class GoodsServiceImpl implements GoodsService {
             tbItemMapper.insert(item);
         }
     }
-
 
 
     private void setTbItemValue(TbItem item, GoodsGroup goods) {
@@ -197,9 +205,9 @@ public class GoodsServiceImpl implements GoodsService {
      */
     @Override
     public void delete(Long[] ids) {
-        for (Long id : ids) {
+        Arrays.asList(ids).forEach(id -> {
             goodsMapper.deleteByPrimaryKey(id);
-        }
+        });
     }
 
 
@@ -240,6 +248,24 @@ public class GoodsServiceImpl implements GoodsService {
 
         Page<TbGoods> page = (Page<TbGoods>) goodsMapper.selectByExample(example);
         return new PageResult(page.getTotal(), page.getResult());
+    }
+
+    @Override
+    public void updateGoodsByStatus(Long[] ids, String status) {
+        Arrays.asList(ids).forEach(id -> {
+            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(id);
+            tbGoods.setAuditStatus(status);
+            goodsMapper.updateByPrimaryKey(tbGoods);
+        });
+    }
+
+    @Override
+    public void updateGoodsMarketableById(Long[] ids, String status) {
+        Arrays.asList(ids).forEach(id -> {
+            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(id);
+            tbGoods.setIsMarketable(status);
+            goodsMapper.updateByPrimaryKey(tbGoods);
+        });
     }
 
 }

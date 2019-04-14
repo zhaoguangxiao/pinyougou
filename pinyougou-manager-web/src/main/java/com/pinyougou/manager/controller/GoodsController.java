@@ -98,5 +98,15 @@ public class GoodsController {
 	public PageResult search(@RequestBody TbGoods goods, int page, int rows){
 		return goodsService.findPage(goods, page, rows);		
 	}
+
+	@RequestMapping("updateGoodsStatus")
+	public Result updateGoodsStatus(Long [] ids,String status){
+		try {
+			goodsService.updateGoodsByStatus(ids,status);
+			return new Result(true, "成功");
+		}catch (Exception e){
+			return new Result(false, "失败");
+		}
+	}
 	
 }

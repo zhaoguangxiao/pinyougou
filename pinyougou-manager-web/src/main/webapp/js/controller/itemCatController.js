@@ -51,10 +51,6 @@ app.controller('itemCatController' ,function($scope,$controller,itemCatService,t
 			}		
 		);				
 	}
-
-
-    //定义用于存放删除id的数组
-    $scope.selectIds=[];
 	 
 	//批量删除 
 	$scope.delete=function(){

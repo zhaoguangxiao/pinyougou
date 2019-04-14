@@ -53,16 +53,16 @@ app.controller('goodsController' ,function($scope,$controller,goodsService,itemC
 	
 	 
 	//批量删除 
-	$scope.dele=function(){			
+	$scope.delete=function(){
 		//获取选中的复选框			
 		goodsService.dele( $scope.selectIds ).success(
 			function(response){
 				if(response.success){
 					$scope.loadList();//刷新列表
 					$scope.selectIds=[];
-				}						
-			}		
-		);				
+				}
+			}
+		);
 	}
 	
 	$scope.searchEntity={};//定义搜索对象 
@@ -77,7 +77,7 @@ app.controller('goodsController' ,function($scope,$controller,goodsService,itemC
 		);
 	}
 
-    $scope.status = ['未审核', '审核通过', '审核未通过', '已关闭'];
+    $scope.status = ['未审核', '审核中','审核通过', '审核未通过', '已关闭'];
 
 
     $scope.findAllCategoryValue = [];
@@ -92,4 +92,19 @@ app.controller('goodsController' ,function($scope,$controller,goodsService,itemC
             }
         )
     };
+
+
+
+    $scope.updateGoodsStatus=function (status) {
+		goodsService.updateGoodsStatus($scope.selectIds,status).success(
+			function (response) {
+				if (response.success){
+                    $scope.loadList();//刷新列表
+                    $scope.selectIds=[];
+				}else{
+                    alert(response.message);
+				}
+            }
+		)
+    }
 });	

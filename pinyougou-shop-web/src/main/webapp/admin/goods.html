@@ -49,10 +49,10 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" ><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
-                                        <button type="button" class="btn btn-default" title="提交审核" ><i class="fa fa-check"></i> 提交审核</button>
-                                        <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button>
+                                        <a href="goods_edit.html" class="btn btn-default" title="新建" ><i class="fa fa-file-o"></i> 新建</a>
+                                        <button type="button" class="btn btn-default" ng-click="delete()" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="button" class="btn btn-default" ng-click="updateGoodStatus('1')" title="提交审核" ><i class="fa fa-check"></i> 提交审核</button>
+                                        <button type="button" class="btn btn-default" title="下架" ng-click="updateGoodsMarketableById('0')"><i class="fa fa-ban"></i> 下架</button>
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
                                 </div>
@@ -62,9 +62,10 @@
                                   状态：<select ng-model="searchEntity.auditStatus">
                                          	<option value="">全部</option>      
                                          	<option value="0">未审核</option>
-                                         	<option value="1">审核通过</option>
-                                         	<option value="2">审核未通过</option>
-                                         	<option value="3">关闭</option>
+                                         	<option value="1">审核中</option>
+                                         	<option value="2">审核通过</option>
+                                         	<option value="3">审核未通过</option>
+                                         	<option value="4">关闭</option>
                                         </select>
 							                  商品名称：<input ng-model="searchEntity.goodsName">
 									<button class="btn btn-default" ng-click="loadList()" >查询</button>
@@ -91,7 +92,7 @@
 			                      </thead>
 			                      <tbody>
 			                          <tr ng-repeat="each in list">
-			                              <td><input  type="checkbox"></td>			                              
+			                              <td><input  type="checkbox" ng-click="changeSelectsEvent($event,each.id)"></td>
 				                          <td>{{each.id}}</td>
 									      <td>{{each.goodsName}}</td>
 									      <td>{{each.price}}</td>

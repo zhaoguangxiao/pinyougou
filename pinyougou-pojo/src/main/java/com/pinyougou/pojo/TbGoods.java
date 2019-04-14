@@ -27,12 +27,17 @@ public class TbGoods implements Serializable{
      */
     private Long defaultItemId;
 
-    /**
+    /**0  未审核
+     * 1  审核中
+     * 2  已通过
+     * 3  驳回
+     * 4  已关闭
      * 状态
      */
     private String auditStatus;
 
-    /**
+    /**1  上架  默认
+     * 0  不上架
      * 是否上架
      */
     private String isMarketable;
@@ -82,7 +87,9 @@ public class TbGoods implements Serializable{
      */
     private String isEnableSpec;
 
-    /**
+    /** 0 删除
+     *  1 不删除 默认
+     *
      * 是否删除
      */
     private String isDelete;

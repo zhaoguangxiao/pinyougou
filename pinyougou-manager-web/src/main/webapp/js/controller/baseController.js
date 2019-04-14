@@ -33,6 +33,8 @@ app.controller('baseController', function ($scope) {
     }
 
 
+    //定义用于存放删除id的数组
+    $scope.selectIds=[];
 
 });
 

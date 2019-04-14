@@ -51,12 +51,11 @@ app.controller('goodsController', function ($scope, $controller, $location, good
     //保存
     $scope.save = function () {
         $scope.entity.tbGoodsDesc.introduction = editor.html();
-
         var serviceObject;
-        if (null !=$scope.entity.tbGoods){
+        if (null !=$scope.entity.tbGoods.id){
             serviceObject=goodsService.update($scope.entity);
         }else{
-            serviceObject=goodsService.add($scope.entity);
+           serviceObject=goodsService.add($scope.entity);
         }
 
         serviceObject.success(
@@ -75,7 +74,7 @@ app.controller('goodsController', function ($scope, $controller, $location, good
 
 
     //批量删除
-    $scope.dele = function () {
+    $scope.delete = function () {
         //获取选中的复选框
         goodsService.dele($scope.selectIds).success(
             function (response) {
@@ -99,7 +98,7 @@ app.controller('goodsController', function ($scope, $controller, $location, good
         );
     };
 
-    $scope.status = ['未审核', '审核通过', '审核未通过', '已关闭'];
+    $scope.status = ['未审核', '审核中','审核通过', '审核未通过', '已关闭'];
 
     $scope.findAllCategory = [];
 
@@ -269,4 +268,35 @@ app.controller('goodsController', function ($scope, $controller, $location, good
             }
         )
     };
+    //更新商品状态
+    $scope.updateGoodStatus=function (status) {
+        goodsService.updateGoodsStatus($scope.selectIds,status).success(
+            function (response) {
+                if (response.success){
+                    $scope.loadList();//刷新列表
+                    $scope.selectIds=[];
+                }else{
+                    alert(response.message);
+                }
+            }
+        )
+    }
+
+
+    //更新商品下架状态
+    $scope.updateGoodsMarketableById=function (status) {
+        goodsService.updateGoodsMarketableById($scope.selectIds,status).success(
+            function (response) {
+                if (response.success){
+                    $scope.loadList();//刷新列表
+                    $scope.selectIds=[];
+                    alert(response.message);
+                }else{
+                    alert(response.message);
+                }
+            }
+        )
+    }
+
+
 });	

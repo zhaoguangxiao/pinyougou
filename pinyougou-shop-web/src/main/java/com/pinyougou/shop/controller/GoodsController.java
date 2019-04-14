@@ -129,5 +129,31 @@ public class GoodsController {
 		goods.setSellerId(sellerId);
 		return goodsService.findPage(goods, page, rows);		
 	}
+
+	@RequestMapping("updateGoodsStatus")
+	public Result updateGoodsStatus(Long [] ids,String status){
+		try {
+			goodsService.updateGoodsByStatus(ids,status);
+			return new Result(true, "成功");
+		}catch (Exception e){
+			return new Result(false, "失败");
+		}
+	}
+
+	/**
+	 * 更新下架状态
+	 * @param ids
+	 * @param status
+	 * @return
+	 */
+	@RequestMapping("updateGoodsMarketableById")
+	public Result updateGoodsMarketableById(Long [] ids,String status){
+		try {
+			goodsService.updateGoodsMarketableById(ids,status);
+			return new Result(true, "成功");
+		}catch (Exception e){
+			return new Result(false, "失败");
+		}
+	}
 	
 }
