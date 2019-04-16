@@ -13,6 +13,9 @@ public class TbContent implements Serializable{
 
     private String pic;
 
+    /** 1 为启用
+     *  0 为禁用
+     */
     private String status;
 
     private Integer sortOrder;
