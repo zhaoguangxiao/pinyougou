@@ -3,6 +3,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-content-service" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-manager-web" />
+    <file type="web" url="file://$PROJECT_DIR$/pinyougou-portal-web" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-sellergoods-service" />
     <file type="web" url="file://$PROJECT_DIR$/pinyougou-shop-web" />
   </component>

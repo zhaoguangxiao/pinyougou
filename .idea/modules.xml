@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/pinyougou-manager-web/pinyougou-manager-web.iml" filepath="$PROJECT_DIR$/pinyougou-manager-web/pinyougou-manager-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou-parent.iml" filepath="$PROJECT_DIR$/pinyougou-parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou-pojo/pinyougou-pojo.iml" filepath="$PROJECT_DIR$/pinyougou-pojo/pinyougou-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pinyougou-portal-web/pinyougou-portal-web.iml" filepath="$PROJECT_DIR$/pinyougou-portal-web/pinyougou-portal-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou-sellergoods-interface/pinyougou-sellergoods-interface.iml" filepath="$PROJECT_DIR$/pinyougou-sellergoods-interface/pinyougou-sellergoods-interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou-sellergoods-service/pinyougou-sellergoods-service.iml" filepath="$PROJECT_DIR$/pinyougou-sellergoods-service/pinyougou-sellergoods-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou-shop-web/pinyougou-shop-web.iml" filepath="$PROJECT_DIR$/pinyougou-shop-web/pinyougou-shop-web.iml" />
