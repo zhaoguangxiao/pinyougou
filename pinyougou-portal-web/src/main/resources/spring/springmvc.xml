@@ -29,5 +29,5 @@
 	<dubbo:application name="pinyougou-protal-web" />
 	<dubbo:registry address="zookeeper://192.168.25.131:2181"/>
 	<dubbo:annotation package="com.pinyougou.protal.controller" />
-
+	<dubbo:provider delay="-1" timeout="60000" retries="0"/>
 </beans>
